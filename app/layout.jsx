@@ -1,20 +1,27 @@
 import '@styles/globals.css'
 
+import Navbar from '@components/Navbar'
+import Provider from '@components/Provider'
+
 export const metadata = {
-    title: 'Promtify',
-    description: 'Discover & Share prompts for AI'
+  title: 'Promtify',
+  description: 'Discover & Share prompts for AI',
 }
 
 const RootLayout = ({ children }) => {
   return (
     <html lang='en'>
-        <div className="main">
-            <div className='gradient' />
+      <body>
+        <div className='main'>
+          <div className='gradient' />
         </div>
 
         <main className='app'>
-            {children}
+          <Navbar />
+          <Provider />
+          {children}
         </main>
+      </body>
     </html>
   )
 }
