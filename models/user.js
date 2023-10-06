@@ -12,6 +12,9 @@ const UserSchema = new Schema({
         required: [true, 'User name is required'],
         match: [/^(?=.{6,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/, 'Username invalid, it should contain 6-20 alphanumeric letters and be unique!']
     },
+    image: {
+        type: String
+    }
 })
 
 // Checks if a user model already exists, if not then it created a new one and assigns it to
