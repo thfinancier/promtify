@@ -6,7 +6,7 @@ import { useState, useEffect } from 'react'
 import { signIn, signOut, useSession, getProviders } from 'next-auth/react'
 
 const Navbar = () => {
-  const isUserLoggedIn = true
+  const { data: session } = useSession()
 
   const [toggleDropdown, setToggleDropdown] = useState(false)
   const [providers, setProviders] = useState(null)
@@ -39,9 +39,9 @@ const Navbar = () => {
 
       {/* Desktop Navigation */}
       <div className='sm:flex hidden'>
-        {isUserLoggedIn ? (
+        {session?.user ? (
           <div className='flex gap-3 md:gap-5'>
-            <Link href='/create-promt' className='black_btn'>
+            <Link href='/create-prompt' className='black_btn'>
               Create a Post
             </Link>
 
@@ -51,7 +51,7 @@ const Navbar = () => {
 
             <Link href='/profile'>
               <Image
-                src='/assets/images/logo.svg'
+                src={session?.user.image}
                 width={37}
                 height={37}
                 alt='Profile'
@@ -80,10 +80,10 @@ const Navbar = () => {
 
       {/* Mobile Navigation */}
       <div className='sm:hidden flex relative'>
-        {isUserLoggedIn ? (
+        {session?.user ? (
           <div className='flex'>
             <Image
-              src='/assets/images/logo.svg'
+              src={session?.user.image}
               width={37}
               height={37}
               alt='Profile'
@@ -104,7 +104,7 @@ const Navbar = () => {
                   My Profile
                 </Link>
                 <Link
-                  href='/create-promt'
+                  href='/create-prompt'
                   className='dropdown_link'
                   // Close the dropdown menu when clicked
                   onClick={() => setToggleDropdown(false)}
