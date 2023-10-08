@@ -34,7 +34,6 @@ const CreatPrompt = () => {
       if (response.ok) {
         // Works like a link, redirects to the specified path
         router.push('/')
-        console.log(data)
       }
     } catch (error) {
       console.error(error)
